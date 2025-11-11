@@ -474,7 +474,8 @@ classDiagram
    ```
 
 ## Физическая модель БД
-```erDiagram
+```mermaid
+erDiagram
     OPERATORS {
         int operator_id PK "AUTO_INCREMENT"
         varchar company_name "NOT NULL"
