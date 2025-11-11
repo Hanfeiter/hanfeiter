@@ -477,46 +477,41 @@ classDiagram
 ```mermaid
 erDiagram
     OPERATORS {
-        int operator_id PK "AUTO_INCREMENT"
-        varchar company_name "NOT NULL"
-        varchar phone "NOT NULL"
-        timestamp created_at "DEFAULT CURRENT_TIMESTAMP"
+        int operator_id PK
+        varchar company_name
+        varchar phone
+        timestamp created_at
     }
     
     WASTE_TYPES {
-        int type_id PK "AUTO_INCREMENT"
-        varchar name "NOT NULL, UNIQUE"
+        int type_id PK
+        varchar name
         text description
-        timestamp created_at "DEFAULT CURRENT_TIMESTAMP"
+        timestamp created_at
     }
     
     COLLECTION_POINTS {
-        int point_id PK "AUTO_INCREMENT"
-        varchar address "NOT NULL"
-        varchar district "NOT NULL"
+        int point_id PK
+        varchar address
+        varchar district
         decimal latitude
         decimal longitude
-        timestamp created_at "DEFAULT CURRENT_TIMESTAMP"
+        timestamp created_at
     }
     
     WASTE_REMOVAL_ACTS {
-        int act_id PK "AUTO_INCREMENT"
-        int point_id FK "NOT NULL"
-        int operator_id FK "NOT NULL"
-        int type_id FK "NOT NULL"
-        date date "NOT NULL"
-        decimal weight_kg "NOT NULL, CHECK (weight_kg > 0)"
+        int act_id PK
+        int point_id FK
+        int operator_id FK
+        int type_id FK
+        date removal_date
+        decimal weight_kg
         varchar truck_number
         text notes
-        timestamp created_at "DEFAULT CURRENT_TIMESTAMP"
-        UNIQUE(point_id, operator_id, type_id, date)
+        timestamp created_at
     }
 
     OPERATORS ||--o{ WASTE_REMOVAL_ACTS : "выполняет"
-    COLLECTION_POINTS ||--o{ WASTE_REMOVAL_ACTS : "имеет"
-    WASTE_TYPES ||--o{ WASTE_REMOVAL_ACTS : "определяет_тип"
-    
-    WASTE_REMOVAL_ACTS }|--|| COLLECTION_POINTS : "ON DELETE CASCADE"
-    WASTE_REMOVAL_ACTS }|--|| OPERATORS : "ON DELETE RESTRICT"
-    WASTE_REMOVAL_ACTS }|--|| WASTE_TYPES : "ON DELETE RESTRICT"
+    COLLECTION_POINTS ||--o{ WASTE_REMOVAL_ACTS : "расположена_на"
+    WASTE_TYPES ||--o{ WASTE_REMOVAL_ACTS : "имеет_тип"
 ```
