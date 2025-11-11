@@ -474,28 +474,28 @@ classDiagram
    ```
 
 ## Физическая модель БД
-```mermaid
-erDiagram
-    OPERATORS ||--o{ WASTE_REMOVAL_ACTS : "выполняет"
-    COLLECTION_POINTS ||--o{ WASTE_REMOVAL_ACTS : "имеет"
-    WASTE_TYPES ||--o{ WASTE_REMOVAL_ACTS : "определяет_тип"
-    
+```erDiagram
     OPERATORS {
         int operator_id PK "AUTO_INCREMENT"
         varchar company_name "NOT NULL"
         varchar phone "NOT NULL"
+        timestamp created_at "DEFAULT CURRENT_TIMESTAMP"
     }
     
     WASTE_TYPES {
         int type_id PK "AUTO_INCREMENT"
         varchar name "NOT NULL, UNIQUE"
         text description
+        timestamp created_at "DEFAULT CURRENT_TIMESTAMP"
     }
     
     COLLECTION_POINTS {
         int point_id PK "AUTO_INCREMENT"
         varchar address "NOT NULL"
         varchar district "NOT NULL"
+        decimal latitude
+        decimal longitude
+        timestamp created_at "DEFAULT CURRENT_TIMESTAMP"
     }
     
     WASTE_REMOVAL_ACTS {
@@ -503,8 +503,19 @@ erDiagram
         int point_id FK "NOT NULL"
         int operator_id FK "NOT NULL"
         int type_id FK "NOT NULL"
-        date date "NOT NULL, DEFAULT CURRENT_DATE"
+        date date "NOT NULL"
         decimal weight_kg "NOT NULL, CHECK (weight_kg > 0)"
+        varchar truck_number
+        text notes
+        timestamp created_at "DEFAULT CURRENT_TIMESTAMP"
         UNIQUE(point_id, operator_id, type_id, date)
     }
+
+    OPERATORS ||--o{ WASTE_REMOVAL_ACTS : "выполняет"
+    COLLECTION_POINTS ||--o{ WASTE_REMOVAL_ACTS : "имеет"
+    WASTE_TYPES ||--o{ WASTE_REMOVAL_ACTS : "определяет_тип"
+    
+    WASTE_REMOVAL_ACTS }|--|| COLLECTION_POINTS : "ON DELETE CASCADE"
+    WASTE_REMOVAL_ACTS }|--|| OPERATORS : "ON DELETE RESTRICT"
+    WASTE_REMOVAL_ACTS }|--|| WASTE_TYPES : "ON DELETE RESTRICT"
 ```
