@@ -534,4 +534,4 @@ erDiagram
 ![](pngFILE/wastetype.PNG)
 ![](pngFILE/operator.PNG)
 ![](pngFILE/collectionpoint.PNG)
-![](pngFILE/pngFILE/wasteremove.PNG)
+![](pngFILE/wasteremove.PNG)
