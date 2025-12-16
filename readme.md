@@ -535,3 +535,15 @@ erDiagram
 ![](pngFILE/operator.PNG)
 ![](pngFILE/collectionpoint.PNG)
 ![](pngFILE/wasteremove.PNG)
+
+
+## Запрос SELECT: Для 4-ёх таблиц
+![](pngFILE/wasteselect.PNG)
+SELECT-Запрос таблицы Waste_Type
+![](pngFILE/operatorselect.PNG)
+SELECT-Запрос таблицы Operator
+![](pngFILE/collecionpointselect.PNG)
+SELECT-Запрос таблицы Collection_Point
+![](pngFILE/wasteremoveselect.PNG)
+SELECT-Запрос таблицы Waste_Remove_Act
+
